@@ -1,0 +1,84 @@
+<div class="container b-flex b-res-block">
+  <div class="b-flex-2 b-padding">
+    <mat-card>
+      <h3 class="b-margin">Basic Calculator <small>#OUTPUT</small></h3>
+      <div class="b-margin b-padding b-output-container">
+        <p class="b-operation">{{ num1 }} {{ operator }} {{ num2 }} =</p>
+        <p class="b-output">{{ output }}</p>
+      </div>
+    </mat-card>
+  </div>
+  <div class="b-flex-1 b-padding">
+    <mat-card>
+      <h3 class="b-margin">Basic Calculator <small>#INPUT</small></h3>
+      <div class="b-x-margin">
+        <mat-form-field appearance="outline" class="b-w-100">
+          <mat-label>Number 1</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Ex. 123"
+            [formControl]="num1fc"
+          />
+          <mat-error *ngIf="num1fc.hasError('required')">
+            Number 1 is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="b-x-margin">
+        <mat-form-field appearance="outline" class="b-w-100">
+          <mat-label>Number 2</mat-label>
+          <input
+            matInput
+            type="number"
+            placeholder="Ex. 123"
+            [formControl]="num2fc"
+          />
+          <mat-error *ngIf="num2fc.hasError('required')">
+            Number 2 is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="b-flex">
+        <button
+          mat-raised-button
+          color="primary"
+          class="b-flex-item b-margin"
+          [disabled]="num1fc.invalid || num2fc.invalid"
+          (click)="calculate('+')"
+        >
+          ADD
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          class="b-flex-item b-margin"
+          [disabled]="num1fc.invalid || num2fc.invalid"
+          (click)="calculate('-')"
+        >
+          SUB
+        </button>
+      </div>
+      <div class="b-flex">
+        <button
+          mat-raised-button
+          color="accent"
+          class="b-flex-item b-margin"
+          [disabled]="num1fc.invalid || num2fc.invalid || num2fc.value == 0"
+          (click)="calculate('/')"
+        >
+          DIV
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="num1fc.invalid || num2fc.invalid"
+          class="b-flex-item b-margin"
+          (click)="calculate('*')"
+        >
+          MUL
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>
